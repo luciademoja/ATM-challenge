@@ -1,10 +1,11 @@
 class Account
-  attr_accessor :pin_code, :exp_date, :balance
+  attr_accessor :pin_code, :exp_date, :balance, :account_status
 
   def initialize
     @pin_code = generate_pin_code
     @exp_date = set_expire_date
-    @balance = 0 
+    @balance = 0
+    @account_status = :active
   end
 
   #The date is stored in a variable in capital letters because it's a constant
@@ -16,5 +17,9 @@ class Account
 
   def set_expire_date
     Date.today.next_year(STD_VALIDITY_YRS).strftime('%m/%y')
+  end
+
+  def deactivate
+    @account_status = :deactivated
   end
 end
