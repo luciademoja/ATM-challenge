@@ -1,9 +1,10 @@
 class Account
-  attr_accessor :pin_code, :exp_date
+  attr_accessor :pin_code, :exp_date, :balance
 
   def initialize
     @pin_code = generate_pin_code
     @exp_date = set_expire_date
+    @balance = 0
   end
 
   #The date is stored in a variable in capital letters because it's a constant
