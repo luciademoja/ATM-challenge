@@ -25,11 +25,12 @@ class Account
   end
 
   private
+
   #if the object equals nil then set missing owner otherwise set owner equal object
   def set_owner(obj)
     obj == nil ?  missing_owner : @owner = obj
   end
-
+  
   def missing_owner
     raise "An Account owner is required"
   end

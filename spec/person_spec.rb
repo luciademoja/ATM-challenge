@@ -21,20 +21,15 @@ describe Person do
     expect(subject.account).to be nil
   end
 
-  describe 'can create an Account' do
-    # As a Person,
-    # in order to be able to use banking services to manage my funds,
-    # i would like to be able to create a bank account
-    before { subject.create_account }
-    it 'of Account class ' do
-      expect(subject.account).to be_an_instance_of Account
-    end
+describe 'can create an Account' do
+  before { subject.create_account }
+  it 'of Account class ' do
+    expect(subject.account).to be_an_instance_of Account
   end
-
-    it 'with himself as an owner' do
-      expect(subject.account.owner).to be subject
-    end
+  it 'with himself as an owner' do
+    expect(subject.account.owner).to be subject
   end
+end
 
   describe 'can manage funds if an account been created' do
     let(:atm) { Atm.new }
@@ -55,3 +50,4 @@ describe Person do
       expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
     end
   end
+end
