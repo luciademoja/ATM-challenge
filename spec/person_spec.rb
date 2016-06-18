@@ -37,15 +37,12 @@ describe 'can manage funds if an account has been created' do
   it 'can deposit funds' do
     expect(subject.deposit(100, atm)).to be_truthy
   end
-  it 'increases account_balance when deposit is allowed'
+  it 'increases account_balance when deposit is allowed' do
     expect(subject.account.balance).to eq 100
   end
 end
 
-describe 'can not manage funds if no account been created' do
-  # As a Person without a Bank Account,
-  # in order to prevent me from using the wrong bank account,
-  # I should NOT be able to to make a deposit.
+describe 'can not manage funds if no account has been created' do
   it 'can\'t deposit funds' do
     expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
   end

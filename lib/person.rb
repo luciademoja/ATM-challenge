@@ -19,7 +19,7 @@ attr_accessor :name, :cash, :account
   end
 
   def no_account?
-    raise "No account has been created"
+    raise RuntimeError, 'No account present'
   end
 
   private
@@ -33,10 +33,9 @@ attr_accessor :name, :cash, :account
   end
 
   def funds_increasing(amount, atm)
-    atm.funds += amount
+    @account.balance += amount
+    @cash += amount
   end
 
-  def balance_increasing(amount)
-    @account.balance += amount
-  end
+
 end
