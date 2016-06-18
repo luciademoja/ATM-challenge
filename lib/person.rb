@@ -13,4 +13,8 @@ attr_accessor :name, :cash, :account
   def set_name(obj)
     obj == nil ?  missing_name : @name = obj
   end
+  
+  def missing_name
+    raise "A person needs a name"
+  end
 end
