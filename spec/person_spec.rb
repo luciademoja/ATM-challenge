@@ -37,6 +37,9 @@ describe 'can manage funds if an account has been created' do
   it 'can deposit funds' do
     expect(subject.deposit(100, atm)).to be_truthy
   end
+  it 'increases account_balance when deposit is allowed'
+    expect(subject.account.balance).to eq 100
+  end
 end
 
 describe 'can not manage funds if no account been created' do

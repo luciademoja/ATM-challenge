@@ -35,4 +35,8 @@ attr_accessor :name, :cash, :account
   def funds_increasing(amount, atm)
     atm.funds += amount
   end
+
+  def balance_increasing(amount)
+    @account.balance += amount
+  end
 end
