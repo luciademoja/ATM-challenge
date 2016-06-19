@@ -8,7 +8,7 @@ class Atm
   def withdraw(amount, pin_code, account)
     case
     when insufficient_funds_in_account?(amount, account) then
-      { status: true, message: 'insufficient funds', date: Date.today }
+      { status: false, message: 'insufficient funds', date: Date.today }
     when insufficient_funds_in_ATM?(amount) then
       { status: false, message: 'insufficient funds in ATM', date: Date.today }
     when incorrect_pin?(pin_code, account.pin_code) then
