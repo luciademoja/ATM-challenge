@@ -36,6 +36,10 @@ attr_accessor :name, :cash, :account
     raise RuntimeError, 'No account present'
   end
 
+  def missing_atm
+   raise RuntimeError, 'An ATM is required'
+ end
+
   def funds_deposit(amount)
     @account.balance += amount
     @cash -= amount
