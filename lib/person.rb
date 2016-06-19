@@ -15,11 +15,11 @@ attr_accessor :name, :cash, :account
   end
 
   def deposit(amount)
-    @account.nil? ? no_account? : funds_deposit(amount)
+    @account.nil? ? missing_account? : funds_deposit(amount)
   end
 
-  def no_account?
-    raise RuntimeError, 'No account present'
+  def withdraw(args = {})
+    @account == nil ? missing_account : withdraw_funds(args)
   end
 
   private
@@ -32,10 +32,25 @@ attr_accessor :name, :cash, :account
     raise "A person needs a name"
   end
 
+  def missing_account?
+    raise RuntimeError, 'No account present'
+  end
+
   def funds_deposit(amount)
     @account.balance += amount
     @cash -= amount
   end
 
+  def withdraw_funds(args)
+    args[:atm] == nil ? missing_atm : atm = args[:atm]
+    account = @account
+    amount = args[:amount]
+    pin = args[:pin]
+    response = atm.withdraw(amount, pin, account)
+    response[:status] == true ? increase_cash(response) : response
+  end
 
+  def increase_cash(response)
+    @cash += response[:amount]
+  end
 end
