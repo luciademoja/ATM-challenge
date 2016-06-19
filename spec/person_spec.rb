@@ -33,16 +33,22 @@ end
 
 describe 'can manage funds if an account has been created' do
   let(:atm) { Atm.new }
+
   before { subject.create_account }
+
   it 'can deposit funds' do
-    expect(subject.deposit(100, atm)).to be_truthy
+    expect(subject.deposit(100)).to be_truthy
   end
+
   it 'increases account_balance when deposit is allowed' do
+    subject.deposit(100)
     expect(subject.account.balance).to eq 100
   end
 end
 
 describe 'can not manage funds if no account has been created' do
+  let(:atm) { Atm.new }
+
   it 'can\'t deposit funds' do
     expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
   end

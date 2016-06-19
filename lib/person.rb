@@ -14,8 +14,8 @@ attr_accessor :name, :cash, :account
     @account = Account.new(owner: self)
   end
 
-  def deposit(amount, atm)
-    @account.nil? ? no_account? : funds_increasing(amount, atm)
+  def deposit(amount)
+    @account.nil? ? no_account? : funds_deposit(amount)
   end
 
   def no_account?
@@ -32,9 +32,9 @@ attr_accessor :name, :cash, :account
     raise "A person needs a name"
   end
 
-  def funds_increasing(amount, atm)
+  def funds_deposit(amount)
     @account.balance += amount
-    @cash += amount
+    @cash -= amount
   end
 
 
