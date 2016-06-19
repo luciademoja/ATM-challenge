@@ -44,6 +44,13 @@ describe 'can manage funds if an account has been created' do
     subject.deposit(100)
     expect(subject.account.balance).to eq 100
   end
+
+  it 'funds are added to the accounst balance - deducted from cash' do
+    subject.cash = 100
+    subject.deposit(100)
+    expect(subject.account.balance).to be 100
+    expect(subject.cash).to be 0
+  end
 end
 
 describe 'can not manage funds if no account has been created' do
